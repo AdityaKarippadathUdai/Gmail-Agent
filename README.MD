@@ -10,7 +10,7 @@ An intelligent Gmail automation platform that allows users to send emails, draft
 
 <br/>
 
-![App Preview](./assets/preview.png)
+![App Preview](./assets/chat-ui.png)
 
 <br/>
 
@@ -39,15 +39,6 @@ AI Gmail Agent is a production-grade AI email assistant that combines the power 
 - 🐳 Docker deployment
 
 The platform allows users to interact with Gmail using natural language in a modern conversational interface.
-
----
-
-# 📸 Screenshots
-
-
-## 💬 Chat Interface
-
-![Chat UI](/assets/chat-ui.png)
 
 ---
 
