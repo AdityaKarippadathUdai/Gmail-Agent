@@ -639,3 +639,14 @@ If you like this project:
 
 
 
+## 👤 Author
+
+**Aditya Karippadath Udai**
+- GitHub: [@AdityaKarippadathUdai](https://github.com/AdityaKarippadathUdai)
+- LinkedIn: [Aditya Karippadath Udai](https://www.linkedin.com/in/aditya-udai-a580a232a/)
+
+---
+
+## ⚖️ License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
