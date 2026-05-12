@@ -32,7 +32,7 @@ AI Gmail Agent is a production-grade AI email assistant that combines the power 
 
 - ⚛️ React + Vite frontend
 - ⚡ FastAPI backend
-- 🤖 OpenAI GPT integration
+- 🤖 Gemini integration
 - 🔄 n8n workflow automation
 - 📧 Gmail API integration
 - 🧠 Session-based AI memory
@@ -44,43 +44,18 @@ The platform allows users to interact with Gmail using natural language in a mod
 
 # 📸 Screenshots
 
-> Add your screenshots to the `/assets` folder.
-
----
 
 ## 💬 Chat Interface
 
-![Chat UI](./assets/chat-ui.png)
+![Chat UI](/assets/chat-ui.png)
 
 ---
 
-## ✍️ AI Email Drafting
-
-![Email Drafting](./assets/email-drafting.png)
-
----
 
 ## 🔄 n8n Workflow
 
-![Workflow](./assets/workflow.png)
+![Workflow](/assets/workflow.png)
 
----
-
-## 🐳 Docker Setup
-
-![Docker Setup](./assets/docker-setup.png)
-
----
-
-## 📱 Mobile Responsive UI
-
-![Mobile UI](./assets/mobile-ui.png)
-
----
-
-## 📊 Dashboard Preview
-
-![Dashboard](./assets/dashboard.png)
 
 ---
 
@@ -132,7 +107,7 @@ The platform allows users to interact with Gmail using natural language in a mod
 | Technology | Purpose |
 |---|---|
 | n8n | Workflow automation |
-| OpenAI | AI capabilities |
+| Gemini | AI capabilities |
 | Gmail API | Email integration |
 
 ---
@@ -174,7 +149,7 @@ The platform allows users to interact with Gmail using natural language in a mod
          ┌───────────┴────────────┐
          ▼                        ▼
 ┌────────────────┐      ┌────────────────┐
-│    OpenAI      │      │   Gmail API    │
+│    Gemini      │      │   Gmail API    │
 │ AI Processing  │      │ Email Actions  │
 └────────────────┘      └────────────────┘
 ```
