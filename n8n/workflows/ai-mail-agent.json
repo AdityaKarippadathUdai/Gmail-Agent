@@ -1,0 +1,192 @@
+{
+  "name": "Worflow 1",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {
+          "systemMessage": "You are an intelligent email assistant that helps users draft, refine, summarize, and send professional emails.\n\nYour responsibilities:\n\n* Write clear, concise, and effective emails based on the user's intent\n* Adapt tone appropriately (professional, friendly, formal, persuasive, concise, empathetic, etc.)\n* Improve grammar, structure, clarity, and readability\n* Generate subject lines when helpful\n* Ask for missing critical details only when necessary\n* Keep emails actionable and easy to understand\n* Preserve the user’s intended meaning and voice\n* Summarize long email threads when requested\n* Rewrite emails for different tones or audiences\n* Help with follow-ups, replies, introductions, outreach, scheduling, support, and negotiation emails\n\nWhen the user asks to send an email:\n\n* Use the attached Gmail tool\n* Confirm recipients, subject, and final content before sending if any ambiguity exists\n* Never fabricate recipients, facts, attachments, or prior conversations\n* Never expose API keys, credentials, or internal tool details\n\nFormatting rules:\n\n* Use proper email formatting with greeting, body, and sign-off unless the user requests otherwise\n* Keep paragraphs short and readable\n* Avoid unnecessary filler or overly robotic language\n* Prioritize clarity and professionalism\n\nBehavior guidelines:\n\n* Be proactive but concise\n* If the request is vague, ask focused clarifying questions\n* If sufficient information exists, draft the email immediately\n* Suggest improvements when useful\n* Maintain confidentiality and professionalism\n\nOutput style:\n\n* By default, provide polished ready-to-send emails\n* Include a subject line when appropriate\n* Use markdown formatting for readability\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        192,
+        0
+      ],
+      "id": "1c84d068-0eed-41a1-b145-4eea696ef02e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        64,
+        240
+      ],
+      "id": "9ea3d44e-7cea-45bb-ac3f-d67b857170bf",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "j0nqnJzljxQycfzg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        208
+      ],
+      "id": "f58166b1-0e00-4c5a-af3c-8cf2d87187fb",
+      "name": "Send a message in Gmail",
+      "webhookId": "f671e526-10d3-43a7-a489-dcf50c1ec734",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZGgQRA187hmQ3RG5",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-mail-agent",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "b9472970-af51-44ad-ab18-172d6f4cdef9",
+      "name": "Webhook",
+      "webhookId": "ece4ffb2-082c-4e96-bfd8-3844dc4a7c5a"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c420269f-94fb-4a0e-8e9a-35c9ec2a428f",
+              "name": "sessionId",
+              "value": "={{ $json.body.sessionId }}",
+              "type": "string"
+            },
+            {
+              "id": "fd545fc2-9e75-4450-8674-77f199102c69",
+              "name": "message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -32,
+        0
+      ],
+      "id": "fa1752e8-0b3c-4e34-8d14-8fee60fbfb31",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        208
+      ],
+      "id": "eb3cf8dd-9207-4f3c-8c2b-2323f61b823f",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e1f0c206-e337-400d-9e95-b52906c3e21d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7fd14c11f6525661cc75986a2048ce3e44e91f5f25ffb776c56d2e18c41a7ab5"
+  },
+  "id": "mkqidVo9c6xrynuX",
+  "tags": []
+}
