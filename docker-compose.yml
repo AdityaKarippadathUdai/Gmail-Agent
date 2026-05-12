@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: ai-gmail-agent-frontend
+
+    ports:
+      - "5173:5173"
+
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+    depends_on:
+      - backend
+
+    networks:
+      - gmail-agent-network
+
+    restart: unless-stopped
+
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: ai-gmail-agent-backend
+
+    ports:
+      - "8000:8000"
+
+    env_file:
+      - .env
+
+    environment:
+      - N8N_WEBHOOK=http://n8n:5678/webhook/ai-mail-agent
+
+    depends_on:
+      - n8n
+
+    networks:
+      - gmail-agent-network
+
+    restart: unless-stopped
+
+
+  n8n:
+    image: n8nio/n8n:latest
+
+    container_name: ai-gmail-agent-n8n
+
+    ports:
+      - "5678:5678"
+
+    env_file:
+      - .env
+
+    environment:
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+      - ./n8n/workflows:/workflows
+
+    networks:
+      - gmail-agent-network
+
+    restart: unless-stopped
+
+
+networks:
+  gmail-agent-network:
+    driver: bridge
