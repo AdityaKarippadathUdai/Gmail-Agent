@@ -4,7 +4,7 @@
 
 # AI Gmail Agent
 
-### ✨ AI-powered Gmail assistant built with React, FastAPI, n8n & OpenAI
+### ✨ AI-powered Gmail assistant built with React, FastAPI, n8n & Gemini API
 
 An intelligent Gmail automation platform that allows users to send emails, draft responses, summarize inbox messages, and automate workflows using natural language conversations.
 
@@ -17,7 +17,7 @@ An intelligent Gmail automation platform that allows users to send emails, draft
 ![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--Powered-412991?style=for-the-badge&logo=openai)
+![Gemini](https://img.shields.io/badge/Gemini-AI--Powered-4285F4?style=for-the-badge&logo=google-gemini)
 ![n8n](https://img.shields.io/badge/n8n-Automation-EA4B71?style=for-the-badge&logo=n8n)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
@@ -162,7 +162,7 @@ The platform allows users to interact with Gmail using natural language in a mod
 2. FastAPI receives and processes the request.
 3. Backend forwards the request to n8n webhook.
 4. n8n orchestrates AI and Gmail actions.
-5. OpenAI generates intelligent responses.
+5. Gemini generates intelligent responses.
 6. Gmail API performs email operations.
 7. Final response returns to the frontend chat UI.
 
@@ -317,7 +317,7 @@ VITE_API_URL=http://localhost:8000
 ## Backend `.env`
 
 ```env
-OPENAI_API_KEY=your_openai_key
+Gemini_API_KEY=Gemini_api_key
 N8N_WEBHOOK=http://localhost:5678/webhook/chat
 N8N_ENCRYPTION_KEY=your_secret_key
 ```
@@ -372,7 +372,7 @@ services:
 
 | Variable | Description |
 |---|---|
-| OPENAI_API_KEY | OpenAI API key |
+| Gemini_API_KEY | GEMINI API key |
 | N8N_WEBHOOK | n8n webhook endpoint |
 | N8N_ENCRYPTION_KEY | Encryption secret |
 | VITE_API_URL | Frontend API URL |
@@ -393,9 +393,9 @@ n8n/workflows/ai-mail-agent.json
 
 ---
 
-## Configure OpenAI
+## Configure Gemini API
 
-Add OpenAI credentials inside n8n.
+Add Gemini credentials inside n8n.
 
 ---
 
@@ -552,12 +552,12 @@ Ensure unique session IDs per conversation.
 ---
 
 <details>
-<summary>❌ OpenAI Authentication Errors</summary>
+<summary>❌ Gemini Authentication Errors</summary>
 
 Verify:
 
 ```env
-OPENAI_API_KEY
+GEMINI_API_KEY
 ```
 
 </details>
