@@ -229,7 +229,7 @@ Gmail Agent/
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/AI-Gmail-Agent.git
+git clone https://github.com/AdityaKarippadathUdai/Gmail-Agent
 
 cd AI-Gmail-Agent
 ```
