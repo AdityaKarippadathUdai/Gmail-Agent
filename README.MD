@@ -42,6 +42,13 @@ The platform allows users to interact with Gmail using natural language in a mod
 
 ---
 
+## 🛰️ AI Workflow Architecture
+
+<p align="center">
+  <img src="./assets/ai-email-automation.svg" width="100%">
+</p>
+
+
 
 ## 🔄 n8n Workflow
 
